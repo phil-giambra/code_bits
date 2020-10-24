@@ -23,7 +23,6 @@ if ( !fs.existsSync( app_data_path ) ) {
     console.log("CREATE: config folder", app_data_path);
     fs.mkdirSync( app_data_path, { } )
     //fs.mkdirSync( app_data_path + "other_folder/subfolder", { recursive: true } )
-
     SAVE.config()
 
 } else {
@@ -47,16 +46,17 @@ SAVE.config = function(){
 
 let data = {}
 
-if ( fs.existsSync( "path/to/folder" ) ) {
-    let filelist =  fs.readdirSync("path/to/folder")
+if ( fs.existsSync( app_data_path + "path/to/folder" ) ) {
+    let filelist =  fs.readdirSync(app_data_path + "path/to/folder")
     for (var i = 0; i < filelist.length; i++) {
-        let uuid = filelist[i].replace(".json", "")
+        let id = filelist[i].replace(".json", "")
         if ( fs.existsSync( "path/to/folder"+filelist[i] ) ) {
-            data[uuid] = JSON.parse( fs.readFileSync("path/to/folder"+filelist[i],'utf8') )
+            data[id] = JSON.parse( fs.readFileSync(app_data_path + "path/to/folder"+filelist[i],'utf8') )
         }
 
     }
+    
 } else {
-    // create the data folder if needed
-    fs.mkdirSync( "path/to/folder" , { recursive:true } )
+    // create the data folder if it dosen't exist
+    fs.mkdirSync( app_data_path + "path/to/folder" , { recursive:true } )
 }
