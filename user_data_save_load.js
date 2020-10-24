@@ -10,26 +10,26 @@ let SAVE = {}
 
 const user = process.env.USER
 const os_platform = process.platform
-let configbase
+let app_data_path
 if (os_platform === "win32"){
-    configbase = process.env.APPDATA.replace(/\\/g, "/")}
+    app_data_path = process.env.APPDATA.replace(/\\/g, "/")}
 else {
-    configbase = process.env.HOME
+    app_data_path = process.env.HOME
 }
-configbase += "/.project_name/"
+app_data_path += "/.project_name/"
 
 
-if ( !fs.existsSync( configbase ) ) {
-    console.log("CREATE: config folder", configbase);
-    fs.mkdirSync( configbase, { } )
-    //fs.mkdirSync( configbase + "other_folder/subfolder", { recursive: true } )
+if ( !fs.existsSync( app_data_path ) ) {
+    console.log("CREATE: config folder", app_data_path);
+    fs.mkdirSync( app_data_path, { } )
+    //fs.mkdirSync( app_data_path + "other_folder/subfolder", { recursive: true } )
 
     SAVE.config()
 
 } else {
-    if (fs.existsSync(configbase + "config.json")) {
+    if (fs.existsSync(app_data_path + "config.json")) {
         console.log('LOAD: config.json.');
-        CONFIG = JSON.parse( fs.readFileSync(configbase + "config.json",'utf8') )
+        CONFIG = JSON.parse( fs.readFileSync(app_data_path + "config.json",'utf8') )
     } else {
         SAVE.config()
     }
@@ -39,11 +39,14 @@ if ( !fs.existsSync( configbase ) ) {
 
 
 SAVE.config = function(){
-    fs.writeFileSync(configbase + "config.json", JSON.stringify(CONFIG,null,4) ) //
+    fs.writeFileSync(app_data_path + "config.json", JSON.stringify(CONFIG,null,4) ) //
 }
 
+
 // get a folder listing and iterate over it to bring in some json data
+
 let data = {}
+
 if ( fs.existsSync( "path/to/folder" ) ) {
     let filelist =  fs.readdirSync("path/to/folder")
     for (var i = 0; i < filelist.length; i++) {
