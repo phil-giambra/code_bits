@@ -25,7 +25,8 @@ function getSecondsForDatetime( date, time ) {  // ex getSecondsForDatetime("201
 
 
 
-// a few diffenernt uuid creation functions
+// a few different uuid creation functions
+// ***these should not be concidered full proof or meeting any standards
 
 function generateUUID() {
     let d = new Date().getTime();
@@ -40,8 +41,8 @@ function generateUUID() {
 }
 
 
-// http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/21963136#21963136
-function generateUUID2 () {
+// source:  http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript/21963136#21963136
+function anotherGenerateUUID () {
     var _lut = [];
 	for ( var i = 0; i < 256; i ++ ) {
 		_lut[ i ] = ( i < 16 ? '0' : '' ) + ( i ).toString( 16 );
@@ -62,9 +63,8 @@ function generateUUID2 () {
 
 
 
-// browser / electron only
-
-function uuidv4() {
+// this one requires browser / electron render process only
+function generateUUIDv4() {
   return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
     (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
   );
