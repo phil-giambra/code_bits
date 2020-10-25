@@ -12,6 +12,7 @@ const user = process.env.USER
 const os_platform = process.platform
 let app_data_path
 if (os_platform === "win32"){
+    // for windows we will convert to forward slashes like linux
     app_data_path = process.env.APPDATA.replace(/\\/g, "/")}
 else {
     app_data_path = process.env.HOME
@@ -20,7 +21,7 @@ app_data_path += "/.project_name/"
 
 
 if ( !fs.existsSync( app_data_path ) ) {
-    console.log("CREATE: config folder", app_data_path);
+    console.log("CREATE: user data folder", app_data_path);
     fs.mkdirSync( app_data_path, { } )
     //fs.mkdirSync( app_data_path + "other_folder/subfolder", { recursive: true } )
     SAVE.config()
@@ -55,7 +56,7 @@ if ( fs.existsSync( app_data_path + "path/to/folder" ) ) {
         }
 
     }
-    
+
 } else {
     // create the data folder if it dosen't exist
     fs.mkdirSync( app_data_path + "path/to/folder" , { recursive:true } )
