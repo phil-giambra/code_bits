@@ -7,7 +7,7 @@ let CLIENTS = { }
 let wss_m = null
 
 
-function startWebScoketServer() {
+function startWebSocketServer() {
 
     wss_m = new WebSocket.Server({ port: wss_port });
 
@@ -16,8 +16,9 @@ function startWebScoketServer() {
         console.log("INFO--> New Connection ");
         // give an id and setup client in CLIENTS
         ws.client_id = client_id;
-        CLIENTS[client_id] = { ws_ref: ws , id : client_id }
         client_id += 1;
+        CLIENTS[client_id] = { ws_ref: ws , id : client_id }
+
 
         //handle incoming messages
         ws.on('message', function incoming(message) {
@@ -45,7 +46,7 @@ function startWebScoketServer() {
 
 }
 
-function stopServer() {
+function stopWebSocketServer() {
     if (wss_m !== null) {// maybe add socket status check
         for (let client_id in CLIENTS) {
             CLIENTS[client_id].ws_ref.close()

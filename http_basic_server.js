@@ -49,7 +49,7 @@ const requestListener = function (req, res) {
             res.writeHead(200, { "Content-Type": "image/avif" });
             break;
         default:
-            // need to add 404 not found responce
+            // unknown Content-Type send 404 not found responce
             notFound()
             return;
     }
@@ -65,8 +65,8 @@ const requestListener = function (req, res) {
 
     // This catches any errors that happen while creating the readable stream (usually invalid names)
     readStream.on('error', function(err) {
-        console.log("readstream error", cont_type, url);
         //console.log(err);
+        console.log("readstream error", cont_type, url);
         notFound()
         return;
 
