@@ -17,7 +17,7 @@ function startWebSocketServer() {
         // give an id and setup client in CLIENTS
         ws.client_id = client_id;
         client_id += 1;
-        CLIENTS[client_id] = { ws_ref: ws , id : client_id }
+        CLIENTS[ws.client_id] = { ws_ref: ws , id : ws.client_id }
 
 
         //handle incoming messages
@@ -48,8 +48,8 @@ function startWebSocketServer() {
 
 function stopWebSocketServer() {
     if (wss_m !== null) {// maybe add socket status check
-        for (let client_id in CLIENTS) {
-            CLIENTS[client_id].ws_ref.close()
+        for (let clientid in CLIENTS) {
+            CLIENTS[clientid].ws_ref.close()
         }
     }
     wss_m.close();
@@ -57,10 +57,10 @@ function stopWebSocketServer() {
 }
 
 
-function sendToOneClient(packet, client_id) {
+function sendToOneClient(packet, clientid) {
     if (wss_m !== null) {// maybe add socket status check
-        if (CLIENTS[client_id]) {
-            CLIENTS[client_id].ws_ref.send(JSON.stringify(packet))
+        if (CLIENTS[clientid]) {
+            CLIENTS[clientid].ws_ref.send(JSON.stringify(packet))
         }
     }
 }
