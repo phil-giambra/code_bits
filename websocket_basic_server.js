@@ -20,7 +20,7 @@ function startWebSocketServer() {
         CLIENTS[ws.client_id] = { ws_ref: ws , id : ws.client_id }
 
 
-        //handle incoming messages
+        // handle incoming messages
         ws.on('message', function incoming(message) {
 
             let packet = JSON.parse( message )
@@ -28,7 +28,7 @@ function startWebSocketServer() {
             console.log("INFO--> New Message from Client");
 
         });
-        // handle disconnects or quits
+        // handle disconnects
         ws.on('close', function close() {
 
             let id = ws.client_id
