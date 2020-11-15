@@ -23,7 +23,11 @@ function getSecondsForDatetime( date, time ) {  // ex getSecondsForDatetime("201
     return seconds
 }
 
+// takes a string and returns it with all areas of multiple whitspace reduced to one space
+function extraSpacesBeGone(string){
+    return string.replace(/\s{2,}/g, ' ');
 
+}
 
 // a few different uuid creation functions
 // ***these should not be concidered full proof or meeting any standards
