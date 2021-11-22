@@ -1,6 +1,6 @@
 
-//adding content with fragments
-//source: https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
+// adding content with fragments
+// SOURCE: https://coderwall.com/p/o9ws2g/why-you-should-always-append-dom-elements-using-documentfragments
 
 var el;
 var i = 0;
@@ -16,7 +16,7 @@ div.appendChild(fragment);
 
 
 // using .append() to add content
-//source: https://dev.to/prof3ssorst3v3/dom-methods-append-vs-appendchild-1lf3
+// SOURCE: https://dev.to/prof3ssorst3v3/dom-methods-append-vs-appendchild-1lf3
 
 let head = document.createElement('h2');
 head.textContent = 'The Section Heading';
@@ -30,8 +30,9 @@ let div = document.getElementById('main');
 div.append(head, p1, p2);
 
 /*
-a comparison of methods
-source: https://stackoverflow.com/questions/2305654/innerhtml-vs-appendchildtxtnode
+A comparison of methods
+SOURCE: https://stackoverflow.com/questions/2305654/innerhtml-vs-appendchildtxtnode
+
 The latter (appendChild) does not cause a complete rebuild of the DOM 
 or even all of the elements/nodes within the target.
 
@@ -63,5 +64,9 @@ The first argument is where to put the HTML; your choices are
 "beforeend" (inside the element, at the end), and 
 "afterend" (outside the element, just in after it). 
 
-Note that "afterbegin" and "beforeend" insert into the element itself, whereas "beforebegin" and "afterend" insert into the element's parent. Supported by all major desktop browsers, I have no idea how good mobile support is (although I'm sure iOS Safari and Android 2.x and up have it, at least), but the shim is tiny.
+Note that "afterbegin" and "beforeend" insert into the element itself, 
+whereas "beforebegin" and "afterend" insert into the element's parent. 
+Supported by all major desktop browsers, I have no idea how good mobile 
+support is (although I'm sure iOS Safari and Android 2.x and up have it, 
+at least), but the shim is tiny.
 */
