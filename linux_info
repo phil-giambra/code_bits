@@ -1,3 +1,6 @@
 
 # get a list of drives by uuid
 ls -al /dev/disk/by-uuid/
+
+# /etc/fstab entry to mount a partition
+UUID=19fa40a3-fd17-412f-9063-a29ca0e75f93 /mount/pathmount    ext4    defaults        0       0
